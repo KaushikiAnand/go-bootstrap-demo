@@ -1,6 +1,12 @@
 // Package handlers provides request handlers.
 package handlers
 
+func main() {
+    repoName := os.Getenv("GO_BOOTSTRAP_REPO_NAME")
+    repoUser := os.Getenv("GO_BOOTSTRAP_REPO_USER")
+    projectName := os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
+}
+
 import (
 	"errors"
 	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/models"

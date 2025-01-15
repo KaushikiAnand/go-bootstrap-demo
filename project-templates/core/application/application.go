@@ -1,6 +1,14 @@
 package application
 
+func main() {
+    repoName := os.Getenv("GO_BOOTSTRAP_REPO_NAME")
+    repoUser := os.Getenv("GO_BOOTSTRAP_REPO_USER")
+    projectName := os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
+}
+
 import (
+	"fmt"
+    "os"
 	"github.com/carbocation/interpose"
 	gorilla_mux "github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
@@ -10,6 +18,7 @@ import (
 	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/handlers"
 	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/middlewares"
 )
+
 
 // New is the constructor for Application struct.
 func New(config *viper.Viper) (*Application, error) {
@@ -24,7 +33,7 @@ func New(config *viper.Viper) (*Application, error) {
 
 // Application is the application object that runs HTTP server.
 type Application struct {
-	config      *viper.Viper
+	config       *viper.Viper
 	sessionStore sessions.Store
 }
 

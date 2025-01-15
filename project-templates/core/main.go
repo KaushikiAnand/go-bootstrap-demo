@@ -1,11 +1,18 @@
 package main
 
+func main() {
+    repoName := os.Getenv("GO_BOOTSTRAP_REPO_NAME")
+    repoUser := os.Getenv("GO_BOOTSTRAP_REPO_USER")
+    projectName := os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
+}
+
 import (
-	"github.com/Sirupsen/logrus"
-	"github.com/spf13/viper"
-	"github.com/tylerb/graceful"
 	"net/http"
 	"time"
+
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
+	"github.com/tylerb/graceful"
 
 	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/application"
 )
