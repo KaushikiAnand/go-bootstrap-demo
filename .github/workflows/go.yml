@@ -17,7 +17,7 @@ jobs:
               with:
                 go-version: ${{matrix.go-version}}
             - name: Install dependencies
-              run: go get .
+              run: go install example.com/cmd@latest
             - name: Build Go
               run: go build -v ./...
             - name: Test with Go
