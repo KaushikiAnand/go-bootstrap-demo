@@ -1,23 +1,25 @@
 package application
 
-func main() {
-    repoName := os.Getenv("GO_BOOTSTRAP_REPO_NAME")
-    repoUser := os.Getenv("GO_BOOTSTRAP_REPO_USER")
-    projectName := os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
-}
-
 import (
+	"net/http"
+	"os"
+
 	"github.com/carbocation/interpose"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/jmoiron/sqlx"
 	gorilla_mux "github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
+	"github.com/jmoiron/sqlx"
 	"github.com/spf13/viper"
-	"net/http"
 
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/handlers"
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/middlewares"
+	"github.com/KaushikiAnand/go-bootstrap-demo/project-templates/core/middlewares"
+	"github.com/KaushikiAnand/go-bootstrap-demo/project-templates/mysql/handlers"
 )
+
+func main() {
+	os.Getenv("GO_BOOTSTRAP_REPO_NAME")
+	os.Getenv("GO_BOOTSTRAP_REPO_USER")
+	os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
+}
 
 // New is the constructor for Application struct.
 func New(config *viper.Viper) (*Application, error) {
@@ -41,9 +43,9 @@ func New(config *viper.Viper) (*Application, error) {
 
 // Application is the application object that runs HTTP server.
 type Application struct {
-	config      *viper.Viper
-	dsn         string
-	db          *sqlx.DB
+	config       *viper.Viper
+	dsn          string
+	db           *sqlx.DB
 	sessionStore sessions.Store
 }
 

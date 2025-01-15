@@ -1,20 +1,21 @@
 package models
 
-func main() {
-    repoName := os.Getenv("GO_BOOTSTRAP_REPO_NAME")
-    repoUser := os.Getenv("GO_BOOTSTRAP_REPO_USER")
-    projectName := os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
-}
-
 import (
 	"fmt"
 	"os"
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/libstring"
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/libunix"
+	"os/user"
+	"testing"
+
+	"github.com/KaushikiAnand/go-bootstrap-demo/project-templates/core/libstring"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"testing"
 )
+
+func main() {
+	os.Getenv("GO_BOOTSTRAP_REPO_NAME")
+	os.Getenv("GO_BOOTSTRAP_REPO_USER")
+	os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
+}
 
 func newEmailForTest() string {
 	return fmt.Sprintf("user-%v@example.com", libstring.RandString(32))
@@ -23,7 +24,7 @@ func newEmailForTest() string {
 func newDbForTest(t *testing.T) *sqlx.DB {
 	var err error
 	pguser, _, pghost, pgport, pgsslmode := os.Getenv("PGUSER"), os.Getenv("PGPASSWORD"), os.Getenv("PGHOST"), os.Getenv("PGPORT"), os.Getenv("PGSSLMODE")
-	if pguser == ""{
+	if pguser == "" {
 		u, err := user.Current()
 		pguser = u.Username
 		if err != nil {

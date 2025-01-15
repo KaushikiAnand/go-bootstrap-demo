@@ -1,20 +1,15 @@
 package handlers
 
-func main() {
-    repoName := os.Getenv("GO_BOOTSTRAP_REPO_NAME")
-    repoUser := os.Getenv("GO_BOOTSTRAP_REPO_USER")
-    projectName := os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
-}
-
 import (
 	"errors"
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/models"
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/libhttp"
-	"github.com/gorilla/sessions"
-	"github.com/jmoiron/sqlx"
 	"html/template"
 	"net/http"
 	"strings"
+
+	"github.com/KaushikiAnand/go-bootstrap-demo/project-templates/core/libhttp"
+	"github.com/KaushikiAnand/go-bootstrap-demo/project-templates/mysql/models"
+	"github.com/gorilla/sessions"
+	"github.com/jmoiron/sqlx"
 )
 
 func GetSignup(w http.ResponseWriter, r *http.Request) {
@@ -81,8 +76,8 @@ func GetLogin(w http.ResponseWriter, r *http.Request) {
 func PostLogin(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 
-	db := r.Context().Value( "db").(*sqlx.DB)
-	sessionStore := r.Context().Value( "sessionStore").(sessions.Store)
+	db := r.Context().Value("db").(*sqlx.DB)
+	sessionStore := r.Context().Value("sessionStore").(sessions.Store)
 
 	email := r.FormValue("Email")
 	password := r.FormValue("Password")
@@ -138,9 +133,9 @@ func PutUsersID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	db := r.Context().Value( "db").(*sqlx.DB)
+	db := r.Context().Value("db").(*sqlx.DB)
 
-	sessionStore := r.Context().Value( "sessionStore").(sessions.Store)
+	sessionStore := r.Context().Value("sessionStore").(sessions.Store)
 
 	session, _ := sessionStore.Get(r, "$GO_BOOTSTRAP_PROJECT_NAME-session")
 

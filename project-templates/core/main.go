@@ -1,20 +1,14 @@
 package main
 
-func main() {
-    repoName := os.Getenv("GO_BOOTSTRAP_REPO_NAME")
-    repoUser := os.Getenv("GO_BOOTSTRAP_REPO_USER")
-    projectName := os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
-}
-
 import (
 	"net/http"
+	"os"
 	"time"
 
+	"github.com/KaushikiAnand/go-bootstrap-demo/project-templates/core/application"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"github.com/tylerb/graceful"
-
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/application"
 )
 
 func newConfig() (*viper.Viper, error) {
@@ -31,6 +25,9 @@ func newConfig() (*viper.Viper, error) {
 }
 
 func main() {
+	os.Getenv("GO_BOOTSTRAP_REPO_NAME")
+	os.Getenv("GO_BOOTSTRAP_REPO_USER")
+	os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
 	config, err := newConfig()
 	if err != nil {
 		logrus.Fatal(err)

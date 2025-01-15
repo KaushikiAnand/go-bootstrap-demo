@@ -1,19 +1,22 @@
 package models
 
-func main() {
-    repoName := os.Getenv("GO_BOOTSTRAP_REPO_NAME")
-    repoUser := os.Getenv("GO_BOOTSTRAP_REPO_USER")
-    projectName := os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
-}
-
 import (
 	"fmt"
+	"os"
+	"strings"
+	"testing"
+
+	"github.com/KaushikiAnand/go-bootstrap-demo/project-templates/core/libstring"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/libstring"
-	"testing"
-	"strings"
 )
+
+func main() {
+	os.Getenv("GO_BOOTSTRAP_REPO_NAME")
+	os.Getenv("GO_BOOTSTRAP_REPO_USER")
+	os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
+}
 
 func newEmailForTest() string {
 	return fmt.Sprintf("user-%v@example.com", libstring.RandString(32))

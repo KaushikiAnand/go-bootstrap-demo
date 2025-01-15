@@ -1,24 +1,22 @@
 package application
 
-func main() {
-    repoName := os.Getenv("GO_BOOTSTRAP_REPO_NAME")
-    repoUser := os.Getenv("GO_BOOTSTRAP_REPO_USER")
-    projectName := os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
-}
-
 import (
-	"fmt"
-    "os"
+	"net/http"
+	"os"
+
+	"github.com/KaushikiAnand/go-bootstrap-demo/project-templates/core/handlers"
+	"github.com/KaushikiAnand/go-bootstrap-demo/project-templates/core/middlewares"
 	"github.com/carbocation/interpose"
 	gorilla_mux "github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
 	"github.com/spf13/viper"
-	"net/http"
-
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/handlers"
-	"$GO_BOOTSTRAP_REPO_NAME/$GO_BOOTSTRAP_REPO_USER/$GO_BOOTSTRAP_PROJECT_NAME/middlewares"
 )
 
+func main() {
+	os.Getenv("GO_BOOTSTRAP_REPO_NAME")
+	os.Getenv("GO_BOOTSTRAP_REPO_USER")
+	os.Getenv("GO_BOOTSTRAP_PROJECT_NAME")
+}
 
 // New is the constructor for Application struct.
 func New(config *viper.Viper) (*Application, error) {
