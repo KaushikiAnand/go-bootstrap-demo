@@ -17,6 +17,8 @@ jobs:
               uses: actions/setup-go@v3
               with:
                 go-version: ${{matrix.go-version}}
+            - name: Install dependencies
+              run: go mod tidy
             - name: Run unit test
               run: go test -v -cover -coverprofile=coverage.out ./... > result.log
             - name: Uploading Test Result Log
@@ -40,5 +42,7 @@ jobs:
               uses: actions/setup-go@v3
               with:
                 go-version: ${{matrix.go-version}}
+            - name: Install dependencies
+              run: go mod tidy
             - name: Bulid Go
               run: go build -v ./..
