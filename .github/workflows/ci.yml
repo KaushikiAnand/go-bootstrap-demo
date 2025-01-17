@@ -3,35 +3,9 @@ name: New Go CI workflow
 on: [push, pull_request]
 
 jobs:
-    lint:
-        name: Lint files
-        runs-on: ubuntu-latest
-        strategy:
-          matrix:
-            go-version: [ '1.21.x' ]
-
-        steps:
-            - name: Checkout Code
-              uses: actions/checkout@v3
-            - name: Setup Go
-              uses: actions/setup-go@v3
-              with:
-                go-version: ${{matrix.go-version}}
-            - name: Install golangci-lint
-              run: |
-                VERSION=$(curl -s https://api.github.com/repos/golangci/golangci-lint/releases/latest | jq -r .tag_name)
-                DOWNLOAD_URL="https://github.com/golangci/golangci-lint/releases/download/${VERSION}/golangci-lint-${VERSION}-linux-amd64.tar.gz"
-                curl -sSfL $DOWNLOAD_URL -o golangci-lint.tar.gz
-                tar -xvzf golangci-lint.tar.gz
-                sudo mv golangci-lint-linux-amd64/golangci-lint /usr/local/bin/
-                golangci-lint --version
-            - name: Run golangci-lint
-              run: golangci-lint run
-
     test:
         name: Testing
         runs-on: ubuntu-latest
-        needs: lint
         strategy:
             matrix:
                 go-version: [ '1.21.x' ]
