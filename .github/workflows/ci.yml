@@ -18,7 +18,7 @@ jobs:
               with:
                 go-version: ${{matrix.go-version}}
             - name: Run unit test
-              run: go test -v -cover -coverprofile=coverage.out ./.. > result.log
+              run: go test -v -cover -coverprofile=coverage.out ./... > result.log
             - name: Uploading Test Result Log
               uses: actions/upload-artifact@v3
               with:
