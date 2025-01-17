@@ -19,7 +19,7 @@ jobs:
                 go-version: ${{matrix.go-version}}
             - name: Install golangci-lint
               run: |
-                  VERSION= latest
+                  VERSION="latest"
                   DOWNLOAD_URL="https://github.com/golangci/golangci-lint/releases/download/${VERSION}/golangci-lint-${VERSION}-linux-amd64.tar.gz"
                   curl -sSfL $DOWNLOAD_URL -o golangci-lint.tar.gz
                   tar -xvzf golangci-lint.tar.gz
