@@ -3,8 +3,23 @@ name: New Go CI workflow
 on: [push, pull_request]
 
 jobs:
+  test:
+        name: Testing
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                go-version: [ '1.21.x' ]
 
-    build:
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+            - name: Setup Go
+              uses: actions/setup-go@v3
+              with:
+                go-version: ${{matrix.go-version}}
+            - name: Test Go
+              run: go test -v -cover ./...
+  build:
         name: Building
         runs-on: ubuntu-latest
         strategy:
