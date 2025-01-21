@@ -21,4 +21,4 @@ jobs:
             - name: Install dependencies
               run: go mod tidy
             - name: Bulid Go
-              run: go build -v ./..
+              run: go build -v ./...
